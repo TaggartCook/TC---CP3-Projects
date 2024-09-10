@@ -45,7 +45,8 @@ def barter():
     elif location == 8:
         print("There is a witch, she offers to give you a special item for all your gold.")
         choice = input("You can accept(1), or you can decline")
-        if 
+        if choice == 1:
+            print("")
 
 def steal():
     print()
