@@ -30,7 +30,8 @@ def choosePlayer():
     elif playerclass == 2:
         p1 = Player(20,5,7)
     elif playerclass == 3:
-        p1 = Player(20,7,7,{"Fireball","Thunderspell","Icicle"})
+        p1 = Player(20,7,7,{
+            Item("Fireball",10,5)})
     else:
         print("Invalid response. Try again.")
         choosePlayer()
@@ -56,15 +57,19 @@ def combat(enemy):
 
 def path0():
     location = 0
-    choice = input("choice of location")
+    choice = input("You are in a cell, there is a guard sleeping just outside.\n There seem to be some loose stones in the back wall.\nYou can investigate the stones(1)or you can try to steal the key from the guard(2)")
     if choice == 1:
+        print("You manage to fit through.")
         path1()
     elif choice == 2:
+        p1.items.add(Item("Key",1,0))
+        print(p1.items)
+        print("It worked! You go through the door with the key, the guard is fast asleep.")
         path2()
 
 def path1():
     location = 1
-    choice = input("choice of location")
+    choice = input("You can hide under a bridge(1), you can cross the bridge(2), go back(3)")
     if choice == 1:
         path3()
     elif choice == 2:
