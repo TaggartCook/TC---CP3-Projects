@@ -10,7 +10,8 @@ class Enemy:
         self.drops = drops
 
 class Player:
-    def __init__(self,health,defense,attack,items = {},):
+    def __init__(self,name,health,defense,attack,items = {},):
+        self.name = name
         self.health = health
         self.defense = defense
         self.attack = attack
@@ -21,17 +22,23 @@ class Item:
         self.name = name
         self.quant = quant
         self.dmg = dmg
-
+p1 = Player("name",20,0,0)
 def choosePlayer():
 
     playerclass = int(input("Choose a class. (Barbarian=1, Ranger=2, Mage=3)"))
     if playerclass == 1:
-        p1 = Player(20,10,10,)
+        p1.name = "Melee"
+        p1.defense = 10
+        p1.attack = 7
     elif playerclass == 2:
-        p1 = Player(20,5,7)
+        p1.name = "Ranged"
+        p1.defense = 5
+        p1.attack = 7
     elif playerclass == 3:
-        p1 = Player(20,7,7,{
-            Item("Fireball",10,5)})
+        p1.name = "Mage"
+        p1.defense = 7
+        p1.attack = 7
+        p1.items = {Item("Fireball",10,5)}
     else:
         print("Invalid response. Try again.")
         choosePlayer()
@@ -79,7 +86,7 @@ def path1():
 
 def path2():
     location = 2
-    choice = input("choice of location")
+    choice = input("The guard is still asleep, you can go right, out of the dungeon(1),\n you can go left to explore the dungeon(2),\n or you can go back (3)")
     if choice == 1:
         path5()
     elif choice == 2:
@@ -99,7 +106,7 @@ def path3():
 
 def path4():
     location = 4
-    choice = input("choice of location")
+    choice = input("You enter the woods, and find a cottage, you can go inside(1), \n or you can pass it by(2)\n The path backward has dissapeared.")
     if choice == 1:
         path8()
     elif choice == 2:
@@ -107,11 +114,18 @@ def path4():
 
 def path5():
     location = 5
-    choice = input("choice of location")
+    p1.attack += 5
+    if p1.name == "Melee":
+        print("You found your sword")
+    elif p1.name == "Ranged":
+        print("You found your bow")
+    elif p1.name == "Mage":
+        print("You found your things")
+    choice = input("You may continue up a staircase(1), or go back(2)")
     if choice == 1:
         path7()
     elif choice == 2:
-        path0()
+        path1()
 
 def path6():
     location = 6
