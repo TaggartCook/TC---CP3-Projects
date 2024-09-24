@@ -129,7 +129,7 @@ def path5():
 
 def path6():
     location = 6
-    choice = input("choice of location")
+    choice = input("There are three new ways, left(1), right(2), forward(3)")
     if choice == 1:
         path10()
     elif choice == 2:
@@ -141,16 +141,14 @@ def path6():
 
 def path7():
     location = 7
-    choice = input("choice of location")
+    choice = input("You enter a market, there is only one stall that interests you.\n You can buy(1), You can go leave town, into the forest(2)\n go under the bridge(3), or go furthur into the town(4)")
     if choice == 1:
         barter()
     elif choice == 2:
-        steal()
-    elif choice == 3:
         path4()
-    elif choice == 4:
+    elif choice == 3:
         path3()
-    elif choice == 5:
+    elif choice == 4:
         path13()
 
 def path8():
