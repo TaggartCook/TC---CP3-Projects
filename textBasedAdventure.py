@@ -10,7 +10,8 @@ class Enemy:
         self.drops = drops
 
 class Player:
-    def __init__(self,health,defense,attack,items = {},):
+    def __init__(self,name,health,defense,attack,items = {},):
+        self.name = name
         self.health = health
         self.defense = defense
         self.attack = attack
@@ -21,16 +22,23 @@ class Item:
         self.name = name
         self.quant = quant
         self.dmg = dmg
-
+p1 = Player("name",20,0,0)
 def choosePlayer():
 
     playerclass = int(input("Choose a class. (Barbarian=1, Ranger=2, Mage=3)"))
     if playerclass == 1:
-        p1 = Player(20,10,10,)
+        p1.name = "Melee"
+        p1.defense = 10
+        p1.attack = 7
     elif playerclass == 2:
-        p1 = Player(20,5,7)
+        p1.name = "Ranged"
+        p1.defense = 5
+        p1.attack = 7
     elif playerclass == 3:
-        p1 = Player(20,7,7,{"Fireball","Thunderspell","Icicle"})
+        p1.name = "Mage"
+        p1.defense = 7
+        p1.attack = 7
+        p1.items = {Item("Fireball",10,5)}
     else:
         print("Invalid response. Try again.")
         choosePlayer()
@@ -56,15 +64,19 @@ def combat(enemy):
 
 def path0():
     location = 0
-    choice = input("choice of location")
+    choice = input("You are in a cell, there is a guard sleeping just outside.\n There seem to be some loose stones in the back wall.\nYou can investigate the stones(1)or you can try to steal the key from the guard(2)")
     if choice == 1:
+        print("You manage to fit through.")
         path1()
     elif choice == 2:
+        p1.items.add(Item("Key",1,0))
+        print(p1.items)
+        print("It worked! You go through the door with the key, the guard is fast asleep.")
         path2()
 
 def path1():
     location = 1
-    choice = input("choice of location")
+    choice = input("You can hide under a bridge(1), you can cross the bridge(2), go back(3)")
     if choice == 1:
         path3()
     elif choice == 2:
@@ -74,7 +86,7 @@ def path1():
 
 def path2():
     location = 2
-    choice = input("choice of location")
+    choice = input("The guard is still asleep, you can go right, out of the dungeon(1),\n you can go left to explore the dungeon(2),\n or you can go back (3)")
     if choice == 1:
         path5()
     elif choice == 2:
@@ -94,7 +106,7 @@ def path3():
 
 def path4():
     location = 4
-    choice = input("choice of location")
+    choice = input("You enter the woods, and find a cottage, you can go inside(1), \n or you can pass it by(2)\n The path backward has dissapeared.")
     if choice == 1:
         path8()
     elif choice == 2:
@@ -102,15 +114,22 @@ def path4():
 
 def path5():
     location = 5
-    choice = input("choice of location")
+    p1.attack += 5
+    if p1.name == "Melee":
+        print("You found your sword")
+    elif p1.name == "Ranged":
+        print("You found your bow")
+    elif p1.name == "Mage":
+        print("You found your things")
+    choice = input("You may continue up a staircase(1), or go back(2)")
     if choice == 1:
         path7()
     elif choice == 2:
-        path0()
+        path1()
 
 def path6():
     location = 6
-    choice = input("choice of location")
+    choice = input("There are three new ways, left(1), right(2), forward(3)")
     if choice == 1:
         path10()
     elif choice == 2:
@@ -122,16 +141,14 @@ def path6():
 
 def path7():
     location = 7
-    choice = input("choice of location")
+    choice = input("You enter a market, there is only one stall that interests you.\n You can buy(1), You can go leave town, into the forest(2)\n go under the bridge(3), or go furthur into the town(4)")
     if choice == 1:
         barter()
     elif choice == 2:
-        steal()
-    elif choice == 3:
         path4()
-    elif choice == 4:
+    elif choice == 3:
         path3()
-    elif choice == 5:
+    elif choice == 4:
         path13()
 
 def path8():
