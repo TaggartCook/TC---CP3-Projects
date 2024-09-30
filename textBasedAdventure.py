@@ -4,13 +4,14 @@ import random
 location = 0
 
 class Enemy:
-    def __init__(self,name,attack,drops = {}):
+    def __init__(self,name,attack,health,drops = []):
         self.name = name
         self.attack = attack
         self.drops = drops
+        self.health = health
 
 class Player:
-    def __init__(self,name,health,defense,attack,items = {},):
+    def __init__(self,name,health,defense,attack,items = [],):
         self.name = name
         self.health = health
         self.defense = defense
@@ -60,7 +61,20 @@ def steal():
     print()
 
 def combat(enemy):
-    playerAct = int(input("What would you like to do?"))
+    playerAct = int(input("What would you like to do?\n Attack (a), Run (r)"))
+    if playerAct == "a":
+        enemy.health -= p1.attack
+        if enemy.health < 1:
+            print("You Survived")
+            p1.items += enemy.drops
+        elif enemy.health > 0:
+            p1.health -= enemy.attack
+        if p1.health < 0:
+            death()
+        elif p1.health > 0:
+            combat(enemy)
+
+troll = Enemy("Troll", 5, 25, ["Potion of strength"])
 
 def path0():
     location = 0
@@ -205,3 +219,7 @@ def path13():
         combat()
     elif choice == 2:
         death()
+
+# start the actual runing here
+
+path0()
