@@ -9,7 +9,10 @@ class Enemy:
         self.attack = attack
         self.drops = drops
         self.health = health
-
+witch = Enemy("witch", 10, 10)
+wendigo = Enemy("Demon", 10, 30)
+mimic = Enemy("Mimic", 7, 10, )
+mummy = Enemy("Mummy", 2, 30)
 class Player:
     def __init__(self,name,health,defense,attack,items = [],):
         self.name = name
@@ -170,45 +173,42 @@ def path7():
 
 def path8():
     location = 8
-    choice = input("choice of location")
+    choice = input("You enter the cottage, the witch who lives inside offers you a deal, all your money for a usefull item.\n you can take this deal(1), you can try to steal from her(2), or you can leave(3)")
     if choice == 1:
         barter()
     elif choice == 2:
-        combat()
+        combat(witch)
     elif choice == 3:
-        path3()
-    elif choice == 4:
         path4()
 
 def path9():
     location = 9
-    choice = input("choice of location")
+    choice = input("Going furthur into the forest, you find a tall evil looking creature that roars as you approach. you can run(1), or fight(2)")
     if choice == 1:
-        print()
+        print("You were foolish to beleive you could outrun the demon.\nYou are quickly caught and impaled on the nearest tree.")
+        death()
     elif choice == 2:
-        print()
-    elif choice == 3:
-        print()
+        combat(wendigo)
 
 def path10():
     location = 10
-    choice = input("choice of location")
+    choice = input("The room is empty save for a large chest.\n you can open it(1), or you can go back(2)")
     if choice == 1:
-        combat()
+        combat(mimic)
     elif choice == 2:
         path6()
 
 def path11():
     location = 11
-    choice = input("choice of location")
+    choice = input("There is a decayed looking monk sitting peacfully on a pedistal. He has a key.\nYou can take the key(1) or go back(2)")
     if choice == 1:
-        combat()
+        combat(mummy)
     elif choice == 2:
         path6()
 
 def path12():
     location = 12
-    choice = input("choice of location")
+    choice = input("Your key unlocks the old door, inside there is a gross amalgomation of rats, seething and screaming.\nYou can try to fight it(1), or you can try to run(2)")
     if choice == 1:
         combat()
     elif choice == 2:
@@ -223,6 +223,6 @@ def path13():
     elif choice == 2:
         death()
 
-# start the actual runing here
+# start the actual running here
 
 choosePlayer()
