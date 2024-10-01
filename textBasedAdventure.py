@@ -23,6 +23,9 @@ class Item:
         self.name = name
         self.quant = quant
         self.dmg = dmg
+
+key = Item("key", 1, 0)
+
 p1 = Player("name",20,0,0)
 def choosePlayer():
 
@@ -79,11 +82,11 @@ troll = Enemy("Troll", 5, 25, ["Potion of strength"])
 def path0():
     location = 0
     choice = input("You are in a cell, there is a guard sleeping just outside.\n There seem to be some loose stones in the back wall.\nYou can investigate the stones(1)or you can try to steal the key from the guard(2)")
-    if choice == 1:
+    if choice == "1":
         print("You manage to fit through.")
         path1()
-    elif choice == 2:
-        p1.items.add(Item("Key",1,0))
+    elif choice == "2":
+        p1.items += key
         print(p1.items)
         print("It worked! You go through the door with the key, the guard is fast asleep.")
         path2()
@@ -222,4 +225,4 @@ def path13():
 
 # start the actual runing here
 
-path0()
+choosePlayer()
