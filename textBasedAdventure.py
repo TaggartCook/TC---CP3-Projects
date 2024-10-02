@@ -10,9 +10,12 @@ class Enemy:
         self.drops = drops
         self.health = health
 witch = Enemy("witch", 10, 10)
+troll = Enemy("Troll", 5, 25, ["Potion of strength"])
 wendigo = Enemy("Demon", 10, 30)
-mimic = Enemy("Mimic", 7, 10, )
+mimic = Enemy("Mimic", 7, 10, ["Power Enhancer"])
 mummy = Enemy("Mummy", 2, 30)
+dragon = Enemy("Dragon",5 , 50)
+ratking = Enemy("Rat King", 3, 40)
 class Player:
     def __init__(self,name,health,defense,attack,items = [],):
         self.name = name
@@ -28,8 +31,8 @@ class Item:
         self.dmg = dmg
 
 key = Item("key", 1, 0)
-
 p1 = Player("name",20,0,0)
+
 def choosePlayer():
 
     playerclass = int(input("Choose a class. (Barbarian=1, Ranger=2, Mage=3)"))
@@ -79,8 +82,6 @@ def combat(enemy):
             death()
         elif p1.health > 0:
             combat(enemy)
-
-troll = Enemy("Troll", 5, 25, ["Potion of strength"])
 
 def path0():
     location = 0
@@ -210,16 +211,16 @@ def path12():
     location = 12
     choice = input("Your key unlocks the old door, inside there is a gross amalgomation of rats, seething and screaming.\nYou can try to fight it(1), or you can try to run(2)")
     if choice == 1:
-        combat()
+        combat(ratking)
     elif choice == 2:
         death()
 
 def path13():
     location = 13
     print()
-    choice = input("choice of action")
+    choice = input("You come across a dragon, you can try and fight it(1), or you can run(2)")
     if choice == 1:
-        combat()
+        combat(dragon)
     elif choice == 2:
         death()
 
