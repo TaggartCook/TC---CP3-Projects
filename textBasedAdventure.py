@@ -4,13 +4,20 @@ import random
 location = 0
 
 class Enemy:
-    def __init__(self,name,attack,drops = {}):
+    def __init__(self,name,attack,health,drops = []):
         self.name = name
         self.attack = attack
         self.drops = drops
-
+        self.health = health
+witch = Enemy("witch", 10, 10)
+troll = Enemy("Troll", 5, 25, ["Potion of strength"])
+wendigo = Enemy("Demon", 10, 30)
+mimic = Enemy("Mimic", 7, 10, ["Power Enhancer"])
+mummy = Enemy("Mummy", 2, 30)
+dragon = Enemy("Dragon",5 , 50)
+ratking = Enemy("Rat King", 3, 40)
 class Player:
-    def __init__(self,name,health,defense,attack,items = {},):
+    def __init__(self,name,health,defense,attack,items = [],):
         self.name = name
         self.health = health
         self.defense = defense
@@ -22,7 +29,10 @@ class Item:
         self.name = name
         self.quant = quant
         self.dmg = dmg
+
+key = Item("key", 1, 0)
 p1 = Player("name",20,0,0)
+
 def choosePlayer():
 
     playerclass = int(input("Choose a class. (Barbarian=1, Ranger=2, Mage=3)"))
@@ -60,16 +70,27 @@ def steal():
     print()
 
 def combat(enemy):
-    playerAct = int(input("What would you like to do?"))
+    playerAct = int(input("What would you like to do?\n Attack (a), Run (r)"))
+    if playerAct == "a":
+        enemy.health -= p1.attack
+        if enemy.health < 1:
+            print("You Survived")
+            p1.items += enemy.drops
+        elif enemy.health > 0:
+            p1.health -= enemy.attack
+        if p1.health < 0:
+            death()
+        elif p1.health > 0:
+            combat(enemy)
 
 def path0():
     location = 0
     choice = input("You are in a cell, there is a guard sleeping just outside.\n There seem to be some loose stones in the back wall.\nYou can investigate the stones(1)or you can try to steal the key from the guard(2)")
-    if choice == 1:
+    if choice == "1":
         print("You manage to fit through.")
         path1()
-    elif choice == 2:
-        p1.items.add(Item("Key",1,0))
+    elif choice == "2":
+        p1.items += key
         print(p1.items)
         print("It worked! You go through the door with the key, the guard is fast asleep.")
         path2()
@@ -153,55 +174,56 @@ def path7():
 
 def path8():
     location = 8
-    choice = input("choice of location")
+    choice = input("You enter the cottage, the witch who lives inside offers you a deal, all your money for a usefull item.\n you can take this deal(1), you can try to steal from her(2), or you can leave(3)")
     if choice == 1:
         barter()
     elif choice == 2:
-        combat()
+        combat(witch)
     elif choice == 3:
-        path3()
-    elif choice == 4:
         path4()
 
 def path9():
     location = 9
-    choice = input("choice of location")
+    choice = input("Going furthur into the forest, you find a tall evil looking creature that roars as you approach. you can run(1), or fight(2)")
     if choice == 1:
-        print()
+        print("You were foolish to beleive you could outrun the demon.\nYou are quickly caught and impaled on the nearest tree.")
+        death()
     elif choice == 2:
-        print()
-    elif choice == 3:
-        print()
+        combat(wendigo)
 
 def path10():
     location = 10
-    choice = input("choice of location")
+    choice = input("The room is empty save for a large chest.\n you can open it(1), or you can go back(2)")
     if choice == 1:
-        combat()
+        combat(mimic)
     elif choice == 2:
         path6()
 
 def path11():
     location = 11
-    choice = input("choice of location")
+    choice = input("There is a decayed looking monk sitting peacfully on a pedistal. He has a key.\nYou can take the key(1) or go back(2)")
     if choice == 1:
-        combat()
+        combat(mummy)
     elif choice == 2:
         path6()
 
 def path12():
     location = 12
-    choice = input("choice of location")
+    choice = input("Your key unlocks the old door, inside there is a gross amalgomation of rats, seething and screaming.\nYou can try to fight it(1), or you can try to run(2)")
     if choice == 1:
-        combat()
+        combat(ratking)
     elif choice == 2:
         death()
 
 def path13():
     location = 13
     print()
-    choice = input("choice of action")
+    choice = input("You come across a dragon, you can try and fight it(1), or you can run(2)")
     if choice == 1:
-        combat()
+        combat(dragon)
     elif choice == 2:
         death()
+
+# start the actual running here
+
+choosePlayer()
