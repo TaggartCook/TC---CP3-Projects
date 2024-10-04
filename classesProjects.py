@@ -32,14 +32,30 @@ class MovieList:
     def sortYear(movies):
         yearList = []
         ansList = []
+        yearList = yearList.sort
         for i in len(movies):
-            
+            for a in movies:
+                if a.year == i:
+                    ansList += a
+        return print(ansList)
+    
+    def listGenre(movies):
+        searchGenre = input("Enter the genre: ")
+        ansList = []
+        for i in movies:
+            if searchGenre == i.genre:
+                ansList += i
+        return print(ansList)
+    
+    def searchDirector(movies):
+        searchDirector = input("Enter the name of the director: ")
+        ansList = []
+        for i in movies:
+            if searchDirector == i.director:
+                ansList += i
         return print()
-    def listGenre():
-        print()
-    def searchDirector():
-        print()
-    def searchCast():
+    
+    def searchCast(movies):
         print()
 
 listMovies = MovieList([
