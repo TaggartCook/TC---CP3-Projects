@@ -19,15 +19,15 @@ class MovieList:
     def sortAlpha(movies):
         ansList = []
         titleList = []
-        for i in len(movies):
-            titleList += movies[i.title]
+        for i in movies:
+            titleList += i.title
         titleList = titleList.sort
-        for i in len(titleList):
+        for i in range(len(titleList)):
             for a in movies:
-                if a.title == i:
-                    ansList += a
-
-        return print(ansList)
+                if a.title == titleList[i]:
+                    ansList.append(a)
+        for item in ansList:
+            print(item)
     
     def sortYear(movies):
         yearList = []
@@ -36,27 +36,36 @@ class MovieList:
         for i in len(movies):
             for a in movies:
                 if a.year == i:
-                    ansList += a
-        return print(ansList)
+                    ansList.append(a)
+        for item in ansList:
+            print(item)
     
     def listGenre(movies):
         searchGenre = input("Enter the genre: ")
         ansList = []
         for i in movies:
             if searchGenre == i.genre:
-                ansList += i
-        return print(ansList)
+                ansList.append(i)
+        for item in ansList:
+            print(item)
     
     def searchDirector(movies):
         searchDirector = input("Enter the name of the director: ")
         ansList = []
         for i in movies:
             if searchDirector == i.director:
-                ansList += i
-        return print()
+                ansList.append(i)
+        for item in ansList:
+            print(item)
     
     def searchCast(movies):
-        print()
+        searchCast = input("Enter the cast member: ")
+        ansList = []
+        for i in range(len(movies)):
+            if search(i.cast(searchCast)):
+                ansList.append(i)
+        for item in ansList:
+            print(item)
 
 listMovies = MovieList([
     Movie("The Godfather", 1972, "Francis Ford Coppola", "R", "Crime", ["Marlon Brando", "Al Pacino", "James Caan"]),
@@ -80,3 +89,20 @@ listMovies = MovieList([
     Movie("The Sixth Sense", 1999, "M. Night Shyamalan", "PG-13", "Thriller", ["Bruce Willis", "Haley Joel Osment", "Toni Collette"]),
     Movie("The Usual Suspects", 1995, "Bryan Singer", "R", "Mystery", ["Kevin Spacey", "Gabriel Byrne", "Chazz Palminteri"])
 ])
+
+def main():
+    print("Key,\nA = Alphabetical Sort\nY = Year Sort\nG = Search Genre\nD = Search Director\nC = Search Cast")
+    choice = input("Which one would you like to do? ")
+    if choice == "A":
+        MovieList.sortAlpha(listMovies.movies)
+    if choice == "Y":
+        MovieList.sortYear(listMovies.movies)
+    if choice == "G":
+        MovieList.listGenre(listMovies.movies)
+    if choice == "D":
+        MovieList.searchDirector(listMovies.movies)
+    if choice == "C":
+        MovieList.searchCast(listMovies.movies)
+
+main()
+    
