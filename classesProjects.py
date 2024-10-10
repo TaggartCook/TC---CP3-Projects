@@ -62,8 +62,8 @@ class MovieList:
         searchCast = input("Enter the cast member: ")
         ansList = []
         for i in range(len(movies)):
-            if search(i.cast(searchCast)):
-                ansList.append(i)
+            if searchCast in movies[i].cast :
+                ansList.append(movies[i])
         for item in ansList:
             print(item)
 
