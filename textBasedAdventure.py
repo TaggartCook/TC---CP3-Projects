@@ -35,16 +35,16 @@ p1 = Player("name",20,0,0)
 
 def choosePlayer():
 
-    playerclass = int(input("Choose a class. (Barbarian=1, Ranger=2, Mage=3)"))
-    if playerclass == 1:
+    playerclass = input("Choose a class. (Barbarian=1, Ranger=2, Mage=3)")
+    if playerclass == "1":
         p1.name = "Melee"
         p1.defense = 10
         p1.attack = 7
-    elif playerclass == 2:
+    elif playerclass == "2":
         p1.name = "Ranged"
         p1.defense = 5
         p1.attack = 7
-    elif playerclass == 3:
+    elif playerclass == "3":
         p1.name = "Mage"
         p1.defense = 7
         p1.attack = 7
