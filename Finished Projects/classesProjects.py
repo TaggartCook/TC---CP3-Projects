@@ -106,6 +106,6 @@ def main():
         MovieList.searchDirector(listMovies.movies)
     if choice == "C":
         MovieList.searchCast(listMovies.movies)
-
-main()
+while true:
+    main()
     
