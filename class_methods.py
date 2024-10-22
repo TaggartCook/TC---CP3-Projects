@@ -1,13 +1,13 @@
 class PetStore:
-    name = "Tom's Dinner"
+    name = "Tom's Diner"
     def __init__(self, id_number):
         self.id_number = id_number
         self.animals = []
         self.featured_pet = None
 
     def add_pet(self, animal):
-        assert isinstance(animal, Animal)
-        self.animals.append(animal)
+        assert isinstance(animal, Animal) # This just makes sure that it is an instance of the actual Animal class and if not it will stop the program
+        self.animals.append(animal)       # Similar to num.isnumeric , just a data type checking thingy-ma-bobber
 
     def remove_pet(self, animal):
         try:
@@ -65,6 +65,9 @@ class Mammal(Animal):
     pass
 
 class Cat(Mammal):
+    def __init__(self, name, diet):
+        super().__init__(name)
+        self.diet = diet
     diet = "mice"
 
 class Dog(Mammal):
