@@ -21,15 +21,17 @@ class MovieList:
         titleList = []
         for i in movies:
             titleList += i.title
+        print(titleList)
         titleList = titleList.sort
+        print(titleList)
         for i in range(len(titleList)):
             for a in movies:
-                if a.title == titleList[i]:
+                if a.title == i:
                     ansList.append(a)
         for item in ansList:
             print(item)
     
-    def sortYear(movies):
+    def sortYear(self, movies):
         yearList = []
         ansList = []
         yearList = yearList.sort
@@ -40,7 +42,7 @@ class MovieList:
         for item in ansList:
             print(item)
     
-    def listGenre(movies):
+    def listGenre(self, movies):
         searchGenre = input("Enter the genre: ")
         ansList = []
         for i in movies:
@@ -49,7 +51,7 @@ class MovieList:
         for item in ansList:
             print(item)
     
-    def searchDirector(movies):
+    def searchDirector(self, movies):
         searchDirector = input("Enter the name of the director: ")
         ansList = []
         for i in movies:
@@ -58,12 +60,12 @@ class MovieList:
         for item in ansList:
             print(item)
     
-    def searchCast(movies):
+    def searchCast(self, movies):
         searchCast = input("Enter the cast member: ")
         ansList = []
         for i in range(len(movies)):
-            if search(i.cast(searchCast)):
-                ansList.append(i)
+            if searchCast in movies[i].cast :
+                ansList.append(movies[i])
         for item in ansList:
             print(item)
 
