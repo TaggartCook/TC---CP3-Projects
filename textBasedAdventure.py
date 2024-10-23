@@ -9,7 +9,7 @@ class Enemy:
         self.attack = attack
         self.drops = drops
         self.health = health
-witch = Enemy("witch", 10, 10)
+witch = Enemy("witch", 10, 10, ["Gold"])
 troll = Enemy("Troll", 5, 25, ["Potion of strength"])
 wendigo = Enemy("Demon", 10, 30)
 mimic = Enemy("Mimic", 7, 10, ["Power Enhancer"])
@@ -32,6 +32,7 @@ class Item:
 potStr = Item("Potion of strength", 1, 5)
 key = Item("key", 1, 0)
 p1 = Player("name",20,0,0)
+gold = Item("Gold", 0, 0)
 
 def choosePlayer():
 
@@ -71,19 +72,24 @@ def steal():
     print()
 
 def combat(enemy):
-    print("You are in combat with {enemy.name}")
-    playerAct = input("What would you like to do?\n Attack (a), Run (r)")
-    if playerAct == "a":
+    print("You are in combat with", enemy.name)
+    playerAct = int(input("What would you like to do?\n Attack (1), Run (2)"))
+    if playerAct == 1:
         enemy.health -= p1.attack
         if enemy.health < 1:
             print("You Survived")
             p1.items += enemy.drops
+            print("Your attack has been increased")
+            p1.attack += 5
+            return
         elif enemy.health > 0:
             p1.health -= enemy.attack
         if p1.health <= 0:
             death()
         elif p1.health >= 0:
             combat(enemy)
+    else:
+        print("NOOOO")
 
 def path0():
     location = 0
@@ -181,7 +187,9 @@ def path8():
     location = 8
     choice = int(input("You enter the cottage, the witch who lives inside offers you a deal, all your money for a usefull item.\n you can take this deal(1), you can try to steal from her(2), or you can leave(3)"))
     if choice == 1:
-        barter()
+        p1.attack += 5
+        p1.health += 15
+        path4()
     elif choice == 2:
         combat(witch)
     elif choice == 3:
