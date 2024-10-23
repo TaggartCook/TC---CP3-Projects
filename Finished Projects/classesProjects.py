@@ -22,7 +22,7 @@ class MovieList:
         for i in movies:
             titleList += i.title
         titleList = titleList.sort
-        for i in titleList:
+        for i in range(len(titleList)):
             for a in movies:
                 if a.title == titleList[i]:
                     ansList.append(a)
