@@ -20,54 +20,55 @@ class MovieList:
         ansList = []
         titleList = []
         for i in movies:
-            titleList += i.title
-        print(titleList)
-        titleList = titleList.sort
-        print(titleList)
-        for i in range(len(titleList)):
+            titleList.append(i.title)
+        titleList.sort()
+        for i in titleList:
             for a in movies:
-                if a.title == i:
+                if i == a.title:
                     ansList.append(a)
+        print(ansList)
         for item in ansList:
-            print(item)
+            print(item, "\n")
     
-    def sortYear(self, movies):
+    def sortYear(movies):
         yearList = []
         ansList = []
-        yearList = yearList.sort
-        for i in len(movies):
+        for i in movies:
+            yearList.append(i.year)
+        yearList.sort()
+        for i in yearList:
             for a in movies:
                 if a.year == i:
                     ansList.append(a)
         for item in ansList:
-            print(item)
+            print(item, "\n")
     
-    def listGenre(self, movies):
+    def listGenre(movies):
         searchGenre = input("Enter the genre: ")
         ansList = []
         for i in movies:
             if searchGenre == i.genre:
                 ansList.append(i)
         for item in ansList:
-            print(item)
+            print(item, "\n")
     
-    def searchDirector(self, movies):
+    def searchDirector(movies):
         searchDirector = input("Enter the name of the director: ")
         ansList = []
         for i in movies:
             if searchDirector == i.director:
                 ansList.append(i)
         for item in ansList:
-            print(item)
+            print(item, "\n")
     
-    def searchCast(self, movies):
+    def searchCast(movies):
         searchCast = input("Enter the cast member: ")
         ansList = []
         for i in range(len(movies)):
             if searchCast in movies[i].cast :
                 ansList.append(movies[i])
         for item in ansList:
-            print(item)
+            print(item, "\n")
 
 listMovies = MovieList([
     Movie("The Godfather", 1972, "Francis Ford Coppola", "R", "Crime", ["Marlon Brando", "Al Pacino", "James Caan"]),
@@ -107,4 +108,3 @@ def main():
         MovieList.searchCast(listMovies.movies)
 
 main()
-    
