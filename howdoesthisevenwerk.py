@@ -1,5 +1,4 @@
 class DinerOrder:
-    # Menu options for the diner
     menu = {
         'drinks': ['water', 'soda', 'tea', 'coffee'],
         'appetizers': ['salad', 'soup', 'breadsticks'],
@@ -92,10 +91,8 @@ def get_order_input():
 def main():
     order = DinerOrder()
 
-    # Display the menu
     display_menu()
 
-    # Let the user place the initial order
     drink, appetizer, main_course, side1, side2, dessert = get_order_input()
 
     if drink:
@@ -111,14 +108,12 @@ def main():
     if dessert:
         order.place_order('desserts', dessert)
 
-    # Show the order and the total
     order.view_order()
     if order.check_if_ordered():
         print(f"Your total is: ${order.calculate_total():.2f}")
     else:
         print("You need to order at least one item!")
 
-    # Ask if the user wants to change anything in their order
     while True:
         change = input("\nWould you like to change any item in your order? (yes/no): ").lower()
         if change == 'yes':
@@ -130,12 +125,10 @@ def main():
         else:
             break
 
-    # Final order summary
     print("\nYour final order is:")
     order.view_order()
     print(f"Final total: ${order.calculate_total():.2f}")
     print("Thank you for ordering!")
 
-# Run the main program
 if __name__ == "__main__":
     main()
