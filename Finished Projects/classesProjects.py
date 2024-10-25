@@ -45,6 +45,10 @@ class MovieList:
     
     def listGenre(movies):
         searchGenre = input("Enter the genre: ")
+        searchGenre = searchGenre.split()
+        for word in searchGenre:
+            word = word.lower().capitalize()
+        searchGenre = searchGenre.join(" ")
         ansList = []
         for i in movies:
             if searchGenre == i.genre:
@@ -54,6 +58,10 @@ class MovieList:
     
     def searchDirector(movies):
         searchDirector = input("Enter the name of the director: ")
+        searchDirector = searchDirector.split()
+        for word in searchDirector:
+            word = word.lower().capitalize()
+        searchDirector = searchDirector.join(" ")
         ansList = []
         for i in movies:
             if searchDirector == i.director:
@@ -63,6 +71,10 @@ class MovieList:
     
     def searchCast(movies):
         searchCast = input("Enter the cast member: ")
+        searchCast = searchCast.split()
+        for word in searchCast:
+            word = word.lower().capitalize()
+        searchCast = searchCast.join(" ")
         ansList = []
         for i in range(len(movies)):
             if searchCast in movies[i].cast :
@@ -96,6 +108,8 @@ listMovies = MovieList([
 def main():
     print("Key,\nA = Alphabetical Sort\nY = Year Sort\nG = Search Genre\nD = Search Director\nC = Search Cast")
     choice = input("Which one would you like to do? ")
+    choice = choice.capitalize()
+    choice = choice.strip()
     if choice == "A":
         MovieList.sortAlpha(listMovies.movies)
     if choice == "Y":
@@ -107,4 +121,5 @@ def main():
     if choice == "C":
         MovieList.searchCast(listMovies.movies)
 
-main()
+while True:
+    main()
