@@ -1,5 +1,3 @@
-import time
-import random
 
 location = 0
 
