@@ -1,5 +1,4 @@
 class DinerOrder:
-    # Menu options for the diner
     menu = {
         'drinks': ['water', 'soda', 'tea', 'coffee'],
         'appetizers': ['salad', 'soup', 'breadsticks'],
@@ -23,7 +22,7 @@ class DinerOrder:
         self.side2 = None
         self.dessert = None
 
-    def place_order(self, category, item):
+    def placeOrder(self, category, item):
         if item.lower() in self.menu[category]:
             if category == 'drinks':
                 self.drink = item.lower()
@@ -41,7 +40,7 @@ class DinerOrder:
         else:
             print(f"Sorry, {item} is not on the {category} menu.")
 
-    def view_order(self):
+    def viewOrder(self):
         print("Your current order:")
         print(f"Drink: {self.drink}" if self.drink else "No drink ordered")
         print(f"Appetizer: {self.appetizer}" if self.appetizer else "No appetizer ordered")
@@ -50,7 +49,7 @@ class DinerOrder:
         print(f"Side 2: {self.side2}" if self.side2 else "No second side ordered")
         print(f"Dessert: {self.dessert}" if self.dessert else "No dessert ordered")
 
-    def calculate_total(self):
+    def calcTotal(self):
         total = 0.0
         if self.drink:
             total += self.menu['prices'][self.drink]
@@ -66,12 +65,12 @@ class DinerOrder:
             total += self.menu['prices'][self.dessert]
         return total
 
-    def check_if_ordered(self):
+    def checkOrderedCat(self):
         return any([self.drink, self.appetizer, self.main_course, self.side1, self.side2, self.dessert])
 
     def change_order(self, category, item):
         print(f"Changing {category} to {item}")
-        self.place_order(category, item)
+        self.placeOrder(category, item)
 
 def display_menu():
     print("\nMenu:")
@@ -92,50 +91,44 @@ def get_order_input():
 def main():
     order = DinerOrder()
 
-    # Display the menu
     display_menu()
 
-    # Let the user place the initial order
     drink, appetizer, main_course, side1, side2, dessert = get_order_input()
 
     if drink:
-        order.place_order('drinks', drink)
+        order.placeOrder('drinks', drink)
     if appetizer:
-        order.place_order('appetizers', appetizer)
+        order.placeOrder('appetizers', appetizer)
     if main_course:
-        order.place_order('main_courses', main_course)
+        order.placeOrder('main_courses', main_course)
     if side1:
-        order.place_order('sides', side1)
+        order.placeOrder('sides', side1)
     if side2:
-        order.place_order('sides', side2)
+        order.placeOrder('sides', side2)
     if dessert:
-        order.place_order('desserts', dessert)
+        order.placeOrder('desserts', dessert)
 
-    # Show the order and the total
-    order.view_order()
-    if order.check_if_ordered():
-        print(f"Your total is: ${order.calculate_total():.2f}")
+    order.viewOrder()
+    if order.checkOrderedCat():
+        print(f"Your total is: ${order.calcTotal():.2f}")
     else:
         print("You need to order at least one item!")
 
-    # Ask if the user wants to change anything in their order
     while True:
         change = input("\nWould you like to change any item in your order? (yes/no): ").lower()
         if change == 'yes':
             category = input("Which category would you like to change (drinks, appetizers, main_courses, sides, desserts)?: ").lower()
             new_item = input(f"What would you like to change your {category[:-1]} to?: ")
             order.change_order(category, new_item)
-            order.view_order()
-            print(f"Updated total: ${order.calculate_total():.2f}")
+            order.viewOrder()
+            print(f"Updated total: ${order.calcTotal():.2f}")
         else:
             break
 
-    # Final order summary
     print("\nYour final order is:")
-    order.view_order()
-    print(f"Final total: ${order.calculate_total():.2f}")
+    order.viewOrder()
+    print(f"Final total: ${order.calcTotal():.2f}")
     print("Thank you for ordering!")
 
-# Run the main program
 if __name__ == "__main__":
     main()
