@@ -48,7 +48,7 @@ class MovieList:
         searchGenre = searchGenre.split()
         for word in searchGenre:
             word = word.lower().capitalize()
-        searchGenre = searchGenre.join(" ")
+        searchGenre = (" ").join(searchGenre)
         ansList = []
         for i in movies:
             if searchGenre == i.genre:
@@ -61,7 +61,7 @@ class MovieList:
         searchDirector = searchDirector.split()
         for word in searchDirector:
             word = word.lower().capitalize()
-        searchDirector = searchDirector.join(" ")
+        searchDirector = (" ").join(searchDirector)
         ansList = []
         for i in movies:
             if searchDirector == i.director:
@@ -74,7 +74,7 @@ class MovieList:
         searchCast = searchCast.split()
         for word in searchCast:
             word = word.lower().capitalize()
-        searchCast = searchCast.join(" ")
+        searchCast = (" ").join(searchCast)
         ansList = []
         for i in range(len(movies)):
             if searchCast in movies[i].cast :
