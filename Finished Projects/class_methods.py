@@ -61,13 +61,13 @@ class Animal:
     def eat(self):
         print(self.name, "is eating", self.diet)
 
+    def __it__(self, other):
+        return(self.name <other.name)
+
 class Mammal(Animal):
     pass
 
 class Cat(Mammal):
-    def __init__(self, name, diet):
-        super().__init__(name)
-        self.diet = diet
     diet = "mice"
 
 class Dog(Mammal):
@@ -108,7 +108,7 @@ class Koi(Fish):
 
 class Guppy(Fish):
     diet = "flakes"
-
+#print(dir(Turtle))
 store = PetStore(1)
 store.add_pet(Turtle("Shelly"))
 store.add_pet(Cat("Joe"))
@@ -127,4 +127,9 @@ store.feed()
 
 print("Reptiles : ")
 for pet in store.get_reptiles():
+    print(pet)
+
+pets.sort()
+
+for pet in pets:
     print(pet)
