@@ -129,7 +129,7 @@ print("Reptiles : ")
 for pet in store.get_reptiles():
     print(pet)
 
-pets.sort()
+#pets.sort()
 
-for pet in pets:
-    print(pet)
+#for pet in pets:
+#    print(pet)

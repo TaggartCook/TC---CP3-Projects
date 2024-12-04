@@ -1,0 +1,40 @@
+BoxLayout:
+    orientation:'vertical'
+    
+    Label:
+        text: 'Enter your name:'
+        box_color: '55e146'
+
+    TextInput:
+        id: user_input
+        multiline: False
+        box_color: '55e146'
+
+    Button:
+        text: 'Greet'
+        on_press: output_label.text = 'Hello, ' + user_input.text
+
+    Label:
+        id: output_label
+        text: 'Welcome!'
+        color: '50ca5a'
+
+    Slider:
+        min: 0
+        max: 100
+        value: 50
+        color: 'a023ac'
+
+    Switch:
+        id: Switch
+        color: 'ac6323'
+    
+    Label:
+        text: 'Toggle me'
+        color: 'edff84'
+
+    ProgressBar:
+        color: '465ce1'
+        max: 100
+        value: 75
+        
